@@ -1,11 +1,6 @@
 import styled from "styled-components";
 
 const SelectFilter = styled.select`
-    *,
-    *::before,
-    *::after {
-        box-sizing: border-box;
-    }
     width: 294px;
     height: 44px;
     border: 1px ${props => props.theme.colors.grayAccent} solid;
@@ -22,6 +17,10 @@ const SelectFilter = styled.select`
 
     &:focus {
         outline: none;
+    }
+
+    &option {
+        color: red;
     }
 `;
 

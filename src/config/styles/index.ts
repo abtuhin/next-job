@@ -15,6 +15,7 @@ interface Theme {
     bold: string;
     medium: string;
     normal: string;
+    f500: number;
   };
   fontSizes: {
     f14: string;
@@ -41,7 +42,8 @@ export const theme: Theme = {
   fontWeights: {
     normal: "normal",
     bold: "bold",
-    medium: "medium"
+    medium: "medium",
+    f500: 500
   },
   fontSizes: {
     f14: "14px",

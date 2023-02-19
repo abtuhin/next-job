@@ -7,9 +7,12 @@ const JobItem = styled.div`
     padding-right: ${props => props.theme.padding * 3}px;
     padding-top: ${props => props.theme.padding * 4}px;
     padding-bottom: ${props => props.theme.padding * 4}px;
-    margin-top: ${props => props.theme.padding * 3}px;
     margin-bottom: ${props => props.theme.padding * 3}px;
-    width: 824px;
+    width: 60%;
+
+    &:first-child {
+        margin-top: ${props => props.theme.padding * 3}px;
+    }
 `;
 
 export default JobItem;
