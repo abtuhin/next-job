@@ -9,6 +9,7 @@ interface Theme {
     gray75: string;
     gray200: string;
     white: string;
+    darkest: string;
   };
   fontWeights: {
     bold: string;
@@ -21,7 +22,7 @@ interface Theme {
     f18: string;
     f48: string;
   };
-  padding: string;
+  padding: number;
 }
 
 export const theme: Theme = {
@@ -34,7 +35,8 @@ export const theme: Theme = {
     grayAccent: "#C3C3C3",
     gray75: "#FAFAFA",
     gray200: "#EAEAEA",
-    white: "#FFFFFF"
+    white: "#FFFFFF",
+    darkest: "#292929"
   },
   fontWeights: {
     normal: "normal",
@@ -47,5 +49,5 @@ export const theme: Theme = {
     f18: "18px",
     f48: "48px"
   },
-  padding: "8px"
+  padding: 8
 };
