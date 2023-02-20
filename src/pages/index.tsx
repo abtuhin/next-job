@@ -9,8 +9,8 @@ import React from "react";
 import Image from 'next/image'
 
 const Home: React.FC = () => {
-  const jobs = useGetJobs();
-  console.log(jobs);
+  const [jobs, locations, levels] = useGetJobs();
+  console.log(locations, levels);
   return (
     <Container>
       <HeaderSection>
@@ -23,12 +23,26 @@ const Home: React.FC = () => {
 
         <SelectFilter>
           <option value="" hidden>
-            Type
+            Bereich
           </option>
-          <option value="1">Audi</option>
-          <option value="2">BMW</option>
-          <option value="3">Citroen</option>
-          <option value="4">Ford</option>
+          {locations.map((l: any) => <option value={l.fields.name}>{l.fields.name}</option>)}
+          
+        </SelectFilter>
+
+        <SelectFilter>
+          <option value="" hidden>
+            Stadt
+          </option>
+          {locations.map((l: any) => <option value={l.fields.city}>{l.fields.city}</option>)}
+          
+        </SelectFilter>
+
+        <SelectFilter>
+          <option value="" hidden>
+            Erfahrungslevel
+          </option>
+          {levels.map((l: any) => <option value={l.fields.title}>{l.fields.title}</option>)}
+          
         </SelectFilter>
       </HeaderSection>
       <JobContainer>
@@ -39,9 +53,18 @@ const Home: React.FC = () => {
               <TypoGraphy.TextSmallPrimary>
                 {job.jobDepartment.title}
               </TypoGraphy.TextSmallPrimary>
-              <TypoGraphy.TextNormalPrimary>
-                Stelle anzeigen
-              </TypoGraphy.TextNormalPrimary>
+              <div style={{ display: 'flex', flexDirection: 'row' }}>
+                <TypoGraphy.TextNormalPrimary>
+                  Stelle anzeigen
+                </TypoGraphy.TextNormalPrimary>
+                <Image
+                    src="/arrow-link.png"
+                    width={30}
+                    height={30}
+                    alt="link"
+                    style={{ marginTop: -3}}
+                  />
+              </div>
             </div>
             <TypoGraphy.TextLarge>
               {job.fields.name}

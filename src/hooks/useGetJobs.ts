@@ -10,6 +10,9 @@ const fetchJobs = async() => await fetch("https://cdn.contentful.com/spaces/h4fy
 export default function useGetJobs() {
   const { data, isLoading, error } = useQuery(['getJobs'], fetchJobs);
   const [allJobs, setAllJobs] = useState([])
+  const [jobLocations, setJobLocations] = useState([])
+  const [levels, setLevels] = useState([])
+
   useEffect(() => {
     if(data) {
       const jobs = data.items;
@@ -17,6 +20,9 @@ export default function useGetJobs() {
       const jobTypes = data.includes.Entry.filter((item: any) => item.sys.contentType.sys.id === "jobType");
       const jobDepartments = data.includes.Entry.filter((item: any) => item.sys.contentType.sys.id === "jobDepartment");
       const jobLevels = data.includes.Entry.filter((item: any) => item.sys.contentType.sys.id === "jobLevel");
+
+      setJobLocations(locations);
+      setLevels(jobLevels);
 
       const formattedJobs = jobs.map((job: any) => {
         const locationId = job.fields.locations[0].sys.id;
@@ -41,5 +47,5 @@ export default function useGetJobs() {
     }
   }, [data])
   
-  return allJobs;
+  return [allJobs, jobLocations, levels];
 }
