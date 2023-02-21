@@ -3,16 +3,13 @@ import JobItem from '@/styled/JobItem'
 import TypoGraphy from '@/styled/TypoGraphy'
 import React from 'react'
 import Image from 'next/image'
+import { Job, Jobs } from '@/types'
 
-interface Jobs {
-
-}
-
-export default function JobListComponent({ jobs }: any) {
+export default function JobListComponent({ jobs }: Jobs) {
   return (
     <JobContainer>
       {
-        jobs.length > 0 && jobs.map((job: any) => (
+        jobs.length > 0 && jobs.map((job: Job) => (
           <JobItem key={job.sys.id}>
             <div style={{ display: 'flex', flex: 1, flexDirection: 'row', justifyContent: 'space-between' }}>
               <TypoGraphy.TextSmallPrimary>

@@ -8,17 +8,22 @@ import JobListComponent from "@/components/JobListComponent";
 import JobFiltersComponent from "@/components/JobFiltersComponent";
 import { sleep } from "react-query/types/core/utils";
 import { Bereich, Erfahrungslevel, Stadt } from "@/constants/filter";
-import Pagination from "@/components/Pagination";
 import PaginationStyle from "@/styled/PaginationStyle";
+import { Job } from "@/types";
 interface Filter {
   key: string;
   value: string;
 }
 
 const Home: React.FC = () => {
-  const [jobs, locations, levels] = useGetJobs();
+  const [jobs] = useGetJobs();
   const [filters, setFilters] = useState({});
   const [filteredJobs, setFilteredJobs] = useState([]);
+  const itemShowedPerPage = 5;
+  const [currentPageData, setCurrentPageData] = useState([]);
+  const [totalDataCount, setTotalDataCount] = useState(0);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [maxPaginationNumber, setMaxPaginationNumber] = useState(0);
 
   useEffect(() => {
     setFilteredJobs([...jobs]);
@@ -35,13 +40,13 @@ const Home: React.FC = () => {
   const filterJob = () => {
     let jobsAfterFilter = jobs;
     if(Stadt in filters) {
-      jobsAfterFilter = jobsAfterFilter.filter((i:any)=> i.jobLocation.city === filters[Stadt])
+      jobsAfterFilter = jobsAfterFilter.filter((i:Job)=> i.jobLocation.city === filters[Stadt])
     }
     if(Bereich in filters) {
-      jobsAfterFilter = jobsAfterFilter.filter((i:any)=> i.jobLocation.name === filters[Bereich])
+      jobsAfterFilter = jobsAfterFilter.filter((i:Job)=> i.jobLocation.name === filters[Bereich])
     }
     if(Erfahrungslevel in filters) {
-      jobsAfterFilter = jobsAfterFilter.filter((i:any)=> i.jobLevel.title === filters[Erfahrungslevel])
+      jobsAfterFilter = jobsAfterFilter.filter((i:Job)=> i.jobLevel.title === filters[Erfahrungslevel])
     }
     setFilteredJobs([...jobsAfterFilter]);
   }
@@ -49,14 +54,6 @@ const Home: React.FC = () => {
   const onChangeFilters = (data: Filter) => {
     setFilters({...filters, [data.key]: data.value});
   }
-
-  //...............................
-  const itemShowedPerPage = 5;
-  const [currentPageData, setCurrentPageData] = useState([]);
-
-  const [totalDataCount, setTotalDataCount] = useState(0);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [maxPaginationNumber, setMaxPaginationNumber] = useState(0);
 
   const resetPagination= () => {
     const totalData = filteredJobs.length;
@@ -97,7 +94,7 @@ const Home: React.FC = () => {
           Hier beginnt deine Zukunft
         </TypoGraphy.Heading>
 
-        <JobFiltersComponent locations={locations} levels={levels} onChangeFilters={onChangeFilters} />
+        <JobFiltersComponent onChangeFilters={onChangeFilters} />
       </HeaderSection>
       <JobListComponent jobs={currentPageData} />
       

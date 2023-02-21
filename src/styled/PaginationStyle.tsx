@@ -6,20 +6,12 @@ const PaginationStyle = styled.div`
     cursor: pointer;
   }
   .selected {
-    border: 1px solid #888;
-    background-color: #1aaeb7;
-    border-radius: 36px;
+    background-color: ${props => props.theme.colors.primary75};
+    border-radius: ${props => props.theme.padding * 4}px;
   }
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  display: grid;
-  height: 100%;
-  width: 100%;
-  place-items: center;
-  text-align: center;
+  
   .pagination {
-    margin: 25px 0 15px 0;
+
   }
   .pagination,
   .pagination li a {
@@ -30,43 +22,28 @@ const PaginationStyle = styled.div`
   }
   .pagination li {
     list-style: none;
+    padding-top: 2px;
   }
   .pagination li a {
     text-decoration: none;
-    color: grey;
-    height: 50px;
-    width: 50px;
-    font-size: 18px;
-    padding-top: 1px;
-    // border: 1px solid rgba(0, 0, 0, 0.25);
-    border-right-width: 0px;
-    // box-shadow: inset 0px 1px 0px 0px rgba(255, 255, 255, 0.35);
+    color: ${props => props.theme.colors.gray};
+    height: ${props => props.theme.padding * 5}px;
+    width: ${props => props.theme.padding * 5}px;
+    font-size: ${props => props.theme.fontSizes.f14};
   }
-  .pagination li:last-child a {
-    border-right-width: 1px;
+  .pagination li:second-child a {
   }
   .pagination li a:hover {
-    background: #1aaeb7;
-    border-radius: 36px;
-    border-top-color: rgba(0, 0, 0, 0.35);
-    border-bottom-color: rgba(0, 0, 0, 0.5);
+    background: ${props => props.theme.colors.primary75};
+    border-radius: ${props => props.theme.padding * 4}px;
   }
   .pagination li a:focus,
   .pagination li a:active {
-    padding-top: 4px;
-    border-left-width: 1px;
-    background: rgba(255, 255, 255, 0.15);
-    box-shadow: inset 0px 2px 1px 0px rgba(0, 0, 0, 0.25);
+    
   }
   .pagination li.icon a {
-    min-width: 120px;
+    min-width: 220px;
     position: relative;
-  }
-  .pagination li:first-child span {
-    padding-right: 8px;
-  }
-  .pagination li:last-child span {
-    padding-left: 8px;
   }
 `;
 

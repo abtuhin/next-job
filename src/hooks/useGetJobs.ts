@@ -1,7 +1,6 @@
+import { ApiResponse } from '@/types';
 import React, { useEffect, useState } from 'react'
 import { useQuery } from 'react-query';
-
-
 
 const toJSON = (_: Response) => _.json()
 
@@ -16,24 +15,24 @@ export default function useGetJobs() {
   useEffect(() => {
     if(data) {
       const jobs = data.items;
-      const locations = data.includes.Entry.filter((item: any) => item.sys.contentType.sys.id === "location");
-      const jobTypes = data.includes.Entry.filter((item: any) => item.sys.contentType.sys.id === "jobType");
-      const jobDepartments = data.includes.Entry.filter((item: any) => item.sys.contentType.sys.id === "jobDepartment");
-      const jobLevels = data.includes.Entry.filter((item: any) => item.sys.contentType.sys.id === "jobLevel");
-
+      const locations = data.includes.Entry.filter((item: ApiResponse) => item.sys.contentType.sys.id === "location");
+      const jobTypes = data.includes.Entry.filter((item: ApiResponse) => item.sys.contentType.sys.id === "jobType");
+      const jobDepartments = data.includes.Entry.filter((item: ApiResponse) => item.sys.contentType.sys.id === "jobDepartment");
+      const jobLevels = data.includes.Entry.filter((item: ApiResponse) => item.sys.contentType.sys.id === "jobLevel");
+      
       setJobLocations(locations);
       setLevels(jobLevels);
 
-      const formattedJobs = jobs.map((job: any) => {
+      const formattedJobs = jobs.map((job: ApiResponse) => {
         const locationId = job.fields.locations[0].sys.id;
         const jobId = job.fields.type.sys.id;
         const departmentId = job.fields.department.sys.id;
         const levelId = job.fields.levels[0].sys.id;
 
-        const jobLocation = locations.find((item: any) => item.sys.id === locationId)
-        const jobType = jobTypes.find((item: any) => item.sys.id === jobId)
-        const jobDepartment = jobDepartments.find((item: any) => item.sys.id === departmentId)
-        const jobLevel = jobLevels.find((item: any) => item.sys.id === levelId)
+        const jobLocation = locations.find((item: ApiResponse) => item.sys.id === locationId)
+        const jobType = jobTypes.find((item: ApiResponse) => item.sys.id === jobId)
+        const jobDepartment = jobDepartments.find((item: ApiResponse) => item.sys.id === departmentId)
+        const jobLevel = jobLevels.find((item: ApiResponse) => item.sys.id === levelId)
 
         return {
           ...job,
