@@ -29,7 +29,7 @@ export default function JobListComponent({ jobs }: Jobs) {
               </div>
             </div>
             <TypoGraphy.TextLarge>
-              {job.fields.name}
+              {job.name}
             </TypoGraphy.TextLarge>
             <div style={{ display: 'flex', flexDirection: 'row' }}>
               <div style={{ display: 'flex', flexDirection: 'row', marginRight: 16 }}>

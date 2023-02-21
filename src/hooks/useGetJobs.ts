@@ -35,7 +35,9 @@ export default function useGetJobs() {
         const jobLevel = jobLevels.find((item: ApiResponse) => item.sys.id === levelId)
 
         return {
-          ...job,
+          ...job.fields,
+          sys: job.sys,
+          metadata: job.metadata,
           jobLocation: jobLocation.fields,
           jobType: jobType.fields,
           jobDepartment: jobDepartment.fields,

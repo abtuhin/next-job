@@ -46,8 +46,18 @@ export interface JobLocation {
 }
 
 export interface Job {
-    fields: JobField;
+    name: string;
+    shortDescription: string;
+    title: string;
+    department: any;
     descriptions: any;
+    employee: any;
+    levels: any;
+    locations: any;
+    sortDate: string;
+    type: any;
+    types: any;
+    branch: any;
     jobDepartment: JobDepartment;
     jobLevel: JobLevel;
     jobType: JobType;
