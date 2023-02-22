@@ -14,7 +14,6 @@ interface JobFiltersComponentProps {
 
 export default function JobFiltersComponent({ onChangeFilters }: JobFiltersComponentProps) {
     const [_, locations, levels] = useGetJobs();
-    console.log(locations, levels)
     return (
         <>
             <SelectFilter

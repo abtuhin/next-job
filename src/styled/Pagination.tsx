@@ -31,11 +31,17 @@ const PaginationStyle = styled.div`
     width: ${props => props.theme.padding * 5}px;
     font-size: ${props => props.theme.fontSizes.f14};
   }
-  .pagination li:second-child a {
+  .pagination li:first-child a {
+    
   }
   .pagination li a:hover {
     background: ${props => props.theme.colors.primary75};
     border-radius: ${props => props.theme.padding * 4}px;
+  }
+  
+  .pagination li:first-child a:hover, .pagination li:last-child a:hover {
+    background: ${props => props.theme.colors.white};
+    cursor: pointer;
   }
   .pagination li a:focus,
   .pagination li a:active {

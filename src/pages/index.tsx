@@ -8,8 +8,10 @@ import JobListComponent from "@/components/JobListComponent";
 import JobFiltersComponent from "@/components/JobFiltersComponent";
 import { sleep } from "react-query/types/core/utils";
 import { Bereich, Erfahrungslevel, Stadt } from "@/constants/filter";
-import PaginationStyle from "@/styled/PaginationStyle";
+import Pagination from "@/styled/Pagination";
 import { Job } from "@/types";
+import Image from 'next/image'
+
 interface Filter {
   key: string;
   value: string;
@@ -98,14 +100,21 @@ const Home: React.FC = () => {
       </HeaderSection>
       <JobListComponent jobs={currentPageData} />
       
-      <PaginationStyle>
+      <Pagination>
         <ul className="pagination">
           <li className="icon">
             <a
               className={currentPage == 1 ? "disabled" : ""}
               onClick={() => onPageChange(currentPage - 1)}
             >
-              <span className="fas fa-angle-left"></span>Previous
+              <Image
+                src="/back.png"
+                width={16}
+                height={16}
+                alt="back-arrow"
+                style={{ marginRight: 8, marginTop: -8}}
+              />  
+              Previous
             </a>
           </li>
 
@@ -120,11 +129,18 @@ const Home: React.FC = () => {
               className={currentPage == maxPaginationNumber ? "disabled" : ""}
               onClick={() => onPageChange(currentPage + 1)}
             >
-              Next<span className="fas fa-angle-right"></span>
+              Next
+              <Image
+                src="/right-arrow.png"
+                width={14}
+                height={14}
+                alt="front-arrow"
+                style={{ marginLeft: 8, marginTop: -8}}
+              />
             </a>
           </li>
         </ul>
-      </PaginationStyle>
+      </Pagination>
     </Container>
   );
 };
