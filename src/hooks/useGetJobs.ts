@@ -4,7 +4,9 @@ import { useQuery } from 'react-query';
 
 const toJSON = (_: Response) => _.json()
 
-const fetchJobs = async() => await fetch("https://cdn.contentful.com/spaces/h4fy7qjn6mui/environments/interview/entries?content_type=job&include=1&access_token=VwC5h8JyBKBW38w1SsKt-et08py9WNMtn3DCQm6WgYM").then(toJSON);
+const fetchJobs = async() => await fetch(`
+  https://cdn.contentful.com/spaces/${process.env.NEXT_PUBLIC_SPACE}/environments/${process.env.NEXT_PUBLIC_ENVIRONMENT}/entries?content_type=${process.env.NEXT_PUBLIC_CONTENT}&include=1&access_token=${process.env.NEXT_PUBLIC_TOKEN}`
+).then(toJSON);
 
 export default function useGetJobs() {
   const { data, isLoading, error } = useQuery(['getJobs'], fetchJobs);
