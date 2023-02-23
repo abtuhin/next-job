@@ -9,10 +9,6 @@ const PaginationStyle = styled.div`
     background-color: ${props => props.theme.colors.primary75};
     border-radius: ${props => props.theme.padding * 4}px;
   }
-  
-  .pagination {
-
-  }
   .pagination,
   .pagination li a {
     display: flex;
@@ -43,13 +39,23 @@ const PaginationStyle = styled.div`
     background: ${props => props.theme.colors.white};
     cursor: pointer;
   }
-  .pagination li a:focus,
-  .pagination li a:active {
-    
-  }
   .pagination li.icon a {
-    min-width: 220px;
+    min-width: 20rem;
     position: relative;
+  }
+
+  @media screen and (max-width: 768px) {
+    .pagination {
+      margin: 0;
+      padding: 0;
+    }
+    .pagination li.icon a span {
+      display: none;
+    }
+
+    .pagination li.icon a {
+      min-width: 0rem;
+    }
   }
 `;
 

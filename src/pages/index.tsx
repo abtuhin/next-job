@@ -114,7 +114,7 @@ const Home: React.FC = () => {
                 alt="back-arrow"
                 style={{ marginRight: 8, marginTop: -8}}
               />  
-              Previous
+              <span>Previous</span>
             </a>
           </li>
 
@@ -129,11 +129,11 @@ const Home: React.FC = () => {
               className={currentPage == maxPaginationNumber ? "disabled" : ""}
               onClick={() => onPageChange(currentPage + 1)}
             >
-              Next
+              <span>Next</span>
               <Image
                 src="/right-arrow.png"
-                width={14}
-                height={14}
+                width={12}
+                height={12}
                 alt="front-arrow"
                 style={{ marginLeft: 8, marginTop: -8}}
               />
